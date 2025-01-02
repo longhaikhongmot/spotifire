@@ -454,8 +454,14 @@ nav {
   button#play {
     padding: 16px 0px;
   }
-  .show-player {
-    display: flex;
+  .playback-opt {
+    display: none;
+  }
+  button#prev, button#next {
+    display: none;
+  }
+  .control-volume, .progress-container {
+    display: none;
   }
 }
 @media screen and (max-width: 280px) {
@@ -472,10 +478,6 @@ nav {
 @media screen and (max-width: 812px) and (orientation: landscape) {
   .player-dock {
     top: 77.5%;
-  }
-  button#prev,
-  button#next {
-    display: inline;
   }
 }
 @media screen and (min-width: 673px) and (max-width: 880px) {
@@ -500,9 +502,6 @@ nav {
   .control-volume {
     display: none;
   }
-  .show-player {
-    display: inline;
-  }
 }
 
 @media screen and (min-width: 820px) and (max-width: 880px) and (orientation: landscape) {
@@ -512,7 +511,7 @@ nav {
 }
 
 /* tablet */
-@media screen and (min-width: 768px) and (max-width: 860px) {
+@media screen and (min-width: 768px) {
   /* .grid-container {
     overflow-y: scroll;
     display: flex;
@@ -527,11 +526,9 @@ nav {
   .metainfo {
     padding: 10px 10px;
   } */
-  .progress-container {
-    display: none;
-  }
-  .show-player {
-    display: inline;
+  button#prev,
+  button#next {
+    display: block;
   }
 }
 
