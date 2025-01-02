@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./img/icon/icon.png" />
+    <title>Spotifire</title>
+
+    <meta property="og:image" content="./img/icon/banner.png" />
+    <meta
+      property="og:description"
+      content="Extend your experience, Extend your listen."
+    />
+    <meta property="og:title" content="Spotifire" />
+    <meta name="twitter:title" content="Spotifire" />
+
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/white.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+
+  <body class="dark">
+    <!-- begin navbar  -->
+    <div class="acryllic">
+      <nav>
+        <div class="nav-left">
+          <div
+            class="box brand bhe"
+            style="margin-right: 20px"
+            onclick="gotoAbout()"
+          >
+            <img width="20px" src="./img/icon/icon.png" />
+            <span>Spotifire</span>
+          </div>
+          <div class="autocomplete">
+            <input id="myInput" type="text" placeholder="Search" />
+            <i class="fas fa-search" id="searchIcon"></i>
+          </div>
+        </div>
+        <div class="box nav-right bhe" id="whitemode">
+          <i class="far fa-moon"></i>
+        </div>
+      </nav>
+    </div>
+    <!-- end navbar -->
+
+    <div class="black-gap"></div>
+
+    <!-- begin browse container  -->
+    <div class="browse-container">
+      <div class="top-list-bar">
+        <div class="header-title">Nhạc Indie hôm nay 🔊📢🎵</div>
+        <div class="grid-container" x-data="{ indie_playlist }">
+          <template x-for="track in indie_playlist">
+            <div id="track.id" class="grid-item bhe" onclick="pickSong(0)">
+              <div class="grid-item_img">
+                <img x-bind:src="track.coverImage" alt="" />
+              </div>
+              <div class="metainfo">
+                <div class="grid-item_songName" x-text="track.title"></div>
+                <div class="grid-item_artist" x-text="track.artist"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <div class="bottom-list-bar">
+        <div class="header-title">100 bài nhạc Việt tổng hợp 🇻🇳💣💥</div>
+        <div class="grid-container" x-data="{ top_playlist }">
+          <template x-for="track in top_playlist">
+            <div id="track.id" class="grid-item bhe" onclick="pickSong(0)">
+              <div class="grid-item_img">
+                <img x-bind:src="track.coverImage" alt="" />
+              </div>
+              <div class="metainfo">
+                <div class="grid-item_songName" x-text="track.title"></div>
+                <div class="grid-item_artist" x-text="track.artist"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <div class="black-gap"></div>
+
+    <!-- begin music player -->
+    <div class="player-dock" id="musicPlayer">
+      <div class="track-meta">
+        <div class="small-albumcover">
+          <img src="./img/Creation.jpg" alt="music-cover" id="cover" />
+        </div>
+        <div class="meta-info">
+          <div class="track-title" id="title"></div>
+          <div class="artist-name" id="artist"></div>
+        </div>
+      </div>
+
+      <div class="control-playback">
+        <div class="playback-opt">
+          <button id="random" class="action-btn">
+            <i class="fas fa-random"></i>
+          </button>
+        </div>
+        <button id="prev" class="action-btn">
+          <i class="fas fa-backward"></i>
+        </button>
+        <button id="play" class="action-btn">
+          <i class="fas fa-play"></i>
+        </button>
+        <button id="next" class="action-btn">
+          <i class="fas fa-forward"></i>
+        </button>
+        <div class="playback-opt">
+          <button id="loop" class="action-btn">
+            <i class="fas fa-retweet"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress"></div>
+      </div>
+
+      <audio src="./music/Creation.mp3" type="audio/mpeg" id="audio"></audio>
+
+      <div class="control-volume">
+        <div class="volume-symbol" id="volume">
+          <i class="fas fa-volume-up"></i>
+        </div>
+        <div class="volume-maxsize">
+          <div class="volume-size"></div>
+        </div>
+      </div>
+
+      <div class="show-player" onclick="appendPlayer()">
+        <i class="fas fa-caret-up"></i>
+      </div>
+
+      <div class="hide-player" onclick="removePlayer()">
+        <i class="fas fa-caret-down"></i> <span>Ẩn trình phát</span>
+      </div>
+    </div>
+    <!-- end music player -->
+
+    <!-- script file -->
+    <script src="./src/data.js"></script>
+    <script src="./src/index.js"></script>
+  </body>
+</html>

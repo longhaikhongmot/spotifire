@@ -1,0 +1,79 @@
+/* Body */
+body.dark {
+  background-color: #1c1c1c;
+  transition: 0.5s;
+}
+body.white {
+  background-color: #fcfaf2;
+  transition: 0.5s;
+}
+
+/* Top */
+body.dark nav {
+  background-color: rgba(28, 28, 28, 0.3);
+}
+body.white nav {
+  background-color: rgba(252, 250, 242, 0.3);
+}
+body.dark nav:hover {
+  background-color: rgba(28, 28, 28);
+}
+body.white nav:hover {
+  background-color: rgba(252, 250, 242);
+}
+body.white .autocomplete {
+  background-color: rgba(255, 255, 251, 0.3);
+}
+body.white .autocomplete input,
+body.white .autocomplete i {
+  color: #434343;
+}
+body.dark .autocomplete {
+  background-color: rgba(67, 67, 67, 0.5);
+}
+body.white .autocomplete {
+  background-color: rgba(255, 255, 251, 0.5);
+}
+
+body.dark .autocomplete:hover {
+  background-color: rgba(67, 67, 67);
+}
+body.white .autocomplete:hover {
+  background-color: rgba(255, 255, 251);
+}
+
+body.dark .autocomplete-items {
+  background-color: rgba(67, 67, 67, 0.99);
+}
+body.dark .autocomplete-items div:hover {
+  background-color: rgba(119, 140, 163, 0.99);
+}
+body.dark .autocomplete-active {
+  background-color: rgba(119, 140, 163, 0.99); 
+  color: #fcfaf2; 
+}
+
+body.white .autocomplete-items {
+  background-color: rgba(67, 67, 67, 0.99);
+}
+body.white .autocomplete-items div:hover {
+  background-color: rgba(119, 140, 163, 0.99);
+}
+body.white .autocomplete-active {
+  background-color: rgba(119, 140, 163, 0.99); 
+  color: #fcfaf2; 
+}
+
+/* Grid */
+body.white .header-title {
+  color: #434343;
+}
+body.white .grid-item {
+  background-color: #fffffb;
+  color: #434343;
+}
+
+/* Bottom */
+body.white .player-dock {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
