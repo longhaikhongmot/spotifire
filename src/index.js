@@ -39,23 +39,21 @@ function gotoAbout() {
 
 /* --------------------- INDEX SCRIPT ------------------------- */
 /* -------- Functions for Music Player --------- */
-// Default track of songs
-let songIndex = 1;
-let artistIndex = 1;
+// Default track of tracks
+let songIndex = 0;
 
 // Initially load song info DOM
-loadSong(songs[songIndex]);
-loadArtist(artists[artistIndex]);
+loadSong(tracks[songIndex]);
+
+// Audio events
+audio.addEventListener("ended", () => nextSong());
 
 // Update song details
-function loadSong(song) {
-  title.innerText = song;
-  audio.src = `./music/${song}.mp3`;
-  cover.src = `./img/${song}.jpg`;
-}
-
-function loadArtist(artist) {
-  artistTitle.innerText = artist;
+function loadSong(track) {
+  title.innerText = track.title;
+  artistTitle.innerText = track.artist;
+  audio.src = track.sourceFile;
+  cover.src = track.coverImage;
 }
 
 // Play song
@@ -78,76 +76,69 @@ function pauseSong() {
 // Change song
 function prevSong() {
   songIndex--;
-  artistIndex--;
 
   if (songIndex < 0) {
-    songIndex = songs.length - 1;
-    artistIndex = songs.length - 1;
+    songIndex = tracks.length - 1;
   }
 
-  loadSong(songs[songIndex]);
-  loadArtist(artists[artistIndex]);
+  loadSong(tracks[songIndex]);
   playSong();
 }
 
 function nextSong() {
   songIndex++;
-  artistIndex++;
 
-  if (songIndex > songs.length - 1) {
+  if (songIndex > tracks.length) {
     songIndex = 0;
-    artistIndex = 0;
   }
 
-  loadSong(songs[songIndex]);
-  loadArtist(artists[artistIndex]);
+  loadSong(tracks[songIndex]);
   playSong();
 }
 
 // Pick song
 function pickSong(Index) {
-  loadSong(songs[Index]);
-  loadArtist(artists[Index]);
+  loadSong(tracks[Index]);
   songIndex = Index;
-  artistIndex = Index;
   playSong();
 }
 
-// ================= Random songs ====================
+// ================= Random tracks ====================
 
 
-function randomSongs() {
-  let corlo = document.getElementById("random");
-  let r = Math.floor(Math.random() * songs.length);
-  loadSong(songs[r]);
-  loadArtist(artists[r]);
+function randomtracks() {
+  let r = Math.floor(Math.random() * tracks.length);
+  loadSong(tracks[r]);
   songIndex = r;
-  artistIndex = r;
   playSong();
 }
 
 let randomBtn = document.getElementById("random");
-randomBtn.addEventListener("click", ()=>{
+randomBtn.addEventListener("click", () => {
   const isPlaying = musicContainer.classList.contains("play");
-  if(isPlaying){
-    randomSongs();
+  if (isPlaying) {
+    randomtracks();
   }
-})
+});
 
-// ================= Loop Songs ======================
+// ================= Loop tracks ======================
 
 function unLoop() {
   let replay = document.getElementById("audio");
   let corl = document.getElementById("loop");
+  audio.removeEventListener("ended", () => { });
+  audio.addEventListener("ended", () => nextSong());
   corl.style.color = "white";
   replay.loop = false;
 }
 
-function loopSongs() {
+function looptracks() {
   let replay = document.getElementById("audio");
   let corl = document.getElementById("loop");
+  audio.removeEventListener("ended", () => nextSong());
+  audio.addEventListener("ended", () => { });
   replay.loop = true;
-  corl.style.color = "#ff6b81";
+  corl.style.color = "#f4b400";
 }
 
 let loopBtn = document.getElementById("loop");
@@ -156,9 +147,9 @@ loopBtn.addEventListener("click", () => {
   if (replay) {
     unLoop();
   } else {
-    loopSongs();
+    looptracks();
   }
-})
+});
 
 // Progress bar
 function updateProgress(e) {
@@ -308,8 +299,8 @@ function autocomplete(inp, arr) {
         b.addEventListener("click", function (e) {
           /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
-          for (let i = 0; i < songs.length; i++) {
-            if (inp.value === songs[i]) {
+          for (let i = 0; i < tracks.length; i++) {
+            if (inp.value === tracks[i]) {
               pickSong(i);
             }
           }
@@ -378,64 +369,4 @@ function autocomplete(inp, arr) {
   });
 }
 
-autocomplete(document.getElementById("myInput"), songs);
-
-// append player
-let musicPlayer = document.querySelector("#musicPlayer");
-let showPlayer = document.querySelector(".show-player");
-let hidePlayer = document.querySelector(".hide-player");
-let volControl = document.querySelector(".control-volume");
-let randOpt = document.querySelector("#random");
-let loopOpt = document.querySelector("#loop");
-let metaInfo = document.querySelector(".meta-info");
-
-function appendPlayer() {
-  musicPlayer.style.height = "45%";
-  musicPlayer.style.top = "50%";
-  musicPlayer.style.padding = "15px 10px";
-  musicPlayer.style.display = "block";
-
-  setTimeout(() => {
-    title.style.width = "200px";
-    artistTitle.style.width = "200px";
-    showPlayer.style.display = "none";
-    hidePlayer.style.display = "inline";
-    progressContainer.style.display = "block";
-    progressContainer.style.width = "90%";
-    progress.style.display = "block";
-    volControl.style.display = "flex";
-    volControl.style.position = "absolute";
-    volControl.style.right = "10%";
-    prevBtn.style.display = "inline";
-    nextBtn.style.display = "inline";
-    randOpt.style.display = "inline";
-    loopOpt.style.display = "inline";
-  }, 200);
-}
-
-function removePlayer() {
-  title.style.width = "100%";
-  artistTitle.style.width = "100%";
-  hidePlayer.style.display = "none";
-  showPlayer.style.display = "inline";
-  progressContainer.style.display = "none";
-  progressContainer.style.width = "100%";
-  progress.style.display = "none";
-  volControl.style.display = "none";
-  volControl.style.position = "absolute";
-  volControl.style.right = "0";
-  prevBtn.style.display = "none";
-  nextBtn.style.display = "none";
-  randOpt.style.display = "none";
-  loopOpt.style.display = "none";
-
-  setTimeout(() => {
-    musicPlayer.style.height = "60px";
-    musicPlayer.style.top = "90%";
-    musicPlayer.style.padding = "0px 0px";
-    musicPlayer.style.display = "flex";
-  }, 200);
-}
-
-
-
+autocomplete(document.getElementById("myInput"), tracks);

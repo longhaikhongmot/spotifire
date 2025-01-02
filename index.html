@@ -10,7 +10,7 @@
     <meta property="og:image" content="./img/icon/banner.png" />
     <meta
       property="og:description"
-      content="Extend your experience, Extend your listen."
+      content="Nâng cao gu nhạc, nâng cao sĩ diện."
     />
     <meta property="og:title" content="Spotifire" />
     <meta name="twitter:title" content="Spotifire" />
@@ -43,10 +43,6 @@
             <img width="20px" src="./img/icon/icon.png" />
             <span>Spotifire</span>
           </div>
-          <div class="autocomplete">
-            <input id="myInput" type="text" placeholder="Search" />
-            <i class="fas fa-search" id="searchIcon"></i>
-          </div>
         </div>
         <div class="box nav-right bhe" id="whitemode">
           <i class="far fa-moon"></i>
@@ -60,10 +56,10 @@
     <!-- begin browse container  -->
     <div class="browse-container">
       <div class="top-list-bar">
-        <div class="header-title">Nhạc Indie hôm nay 🔊📢🎵</div>
-        <div class="grid-container" x-data="{ indie_playlist }">
-          <template x-for="track in indie_playlist">
-            <div id="track.id" class="grid-item bhe" onclick="pickSong(0)">
+        <div class="header-title">Indie Việt bất hủ 🇻🇳🔊💥</div>
+        <div class="grid-container" x-data="{ tracks }">
+          <template x-for="(track, index) in tracks" :key="track.id">
+            <div id="track.id" class="grid-item bhe" @click="pickSong(index)">
               <div class="grid-item_img">
                 <img x-bind:src="track.coverImage" x-bind:alt="track.title" />
               </div>
@@ -75,7 +71,8 @@
           </template>
         </div>
       </div>
-
+    
+    <!-- 
       <div class="bottom-list-bar">
         <div class="header-title">100 bài nhạc Việt tổng hợp 🇻🇳💣💥</div>
         <div class="grid-container" x-data="{ top_playlist }">
@@ -92,7 +89,7 @@
           </template>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="black-gap"></div>
 
@@ -100,7 +97,7 @@
     <div class="player-dock" id="musicPlayer">
       <div class="track-meta">
         <div class="small-albumcover">
-          <img src="./img/Creation.jpg" alt="music-cover" id="cover" />
+          <img src="./img/ngot-lan-cuoi.webp" alt="music-cover" id="cover" />
         </div>
         <div class="meta-info">
           <div class="track-title" id="title"></div>
@@ -134,7 +131,7 @@
         <div class="progress"></div>
       </div>
 
-      <audio src="./music/Creation.mp3" type="audio/mpeg" id="audio"></audio>
+      <audio src="./music/ngot-lan-cuoi.mp3" type="audio/mpeg" id="audio"></audio>
 
       <div class="control-volume">
         <div class="volume-symbol" id="volume">
@@ -143,14 +140,6 @@
         <div class="volume-maxsize">
           <div class="volume-size"></div>
         </div>
-      </div>
-
-      <div class="show-player" onclick="appendPlayer()">
-        <i class="fas fa-caret-up"></i>
-      </div>
-
-      <div class="hide-player" onclick="removePlayer()">
-        <i class="fas fa-caret-down"></i> <span>Ẩn trình phát</span>
       </div>
     </div>
     <!-- end music player -->

@@ -54,7 +54,9 @@ nav {
   transition: 0.5s;
   border-radius: 5px;
   padding: 10px 10px;
-  font-weight: bold;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
 }
 
 .brand:hover {
@@ -221,15 +223,6 @@ nav {
   transform: scale(1.025);
 }
 
-.show-player,
-.hide-player {
-  cursor: pointer;
-  vertical-align: middle;
-  padding: 20px;
-}
-.hide-player {
-  display: none;
-}
 .hide-player i,
 .hide-player span {
   margin: 20px 4px;
@@ -254,9 +247,7 @@ nav {
 }
 
 .meta-info div {
-  width: 160px;
   margin: 0px 6px;
-  overflow-x: scroll;
   white-space: nowrap;
 }
 
@@ -398,20 +389,12 @@ nav {
 }
 
 /* reponsive */
-
-.show-player {
-  display: none;
-}
-
 /* mobile portrait */
 @media screen and (min-width: 280px) and (max-width: 880px) {
   /* Top */
   nav {
     justify-content: space-between;
     padding: 20px 10px;
-  }
-  .brand span {
-    display: none;
   }
   .autocomplete {
     width: 100%;
@@ -467,13 +450,6 @@ nav {
   }
   .meta-info {
     width: 90px;
-  }
-  button#prev,
-  button#next,
-  .progress-container,
-  .control-volume,
-  .playback-opt {
-    display: none;
   }
   button#play {
     padding: 16px 0px;
@@ -537,9 +513,6 @@ nav {
 
 /* tablet */
 @media screen and (min-width: 768px) and (max-width: 860px) {
-  .brand span {
-    display: inline;
-  }
   /* .grid-container {
     overflow-y: scroll;
     display: flex;
@@ -573,9 +546,6 @@ nav {
   .progress-container {
     display: none;
   }
-  .show-player {
-    display: inline;
-  }
 }
 @media screen and (min-width: 1024px) and (max-width: 1280px) {
   .player-dock {
@@ -587,9 +557,6 @@ nav {
   .progress-container {
     display: none;
   }
-  .show-player {
-    display: inline;
-  }
   .meta-info {
     width: 80px;
   }
@@ -597,11 +564,6 @@ nav {
 
 @media screen and (min-width: 1080px) and (max-width: 1280px) {
   .progress-container {
-    display: none;
-  }
-}
-@media screen and (max-width: 1465px) {
-  .brand span {
     display: none;
   }
 }
@@ -634,4 +596,9 @@ body.inspired nav {
   body.inspired .introduce {
     width: 90%;
   }
+}
+
+.grid-item_artist {
+  padding-top: 5px;
+  font-size: 12px;
 }
