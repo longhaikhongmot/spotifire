@@ -65,7 +65,7 @@
           <template x-for="track in indie_playlist">
             <div id="track.id" class="grid-item bhe" onclick="pickSong(0)">
               <div class="grid-item_img">
-                <img x-bind:src="track.coverImage" alt="" />
+                <img x-bind:src="track.coverImage" x-bind:alt="track.title" />
               </div>
               <div class="metainfo">
                 <div class="grid-item_songName" x-text="track.title"></div>
